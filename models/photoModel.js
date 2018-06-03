@@ -2,12 +2,15 @@ let mongoose = require("mongoose");
 
 //create the Schema
 let photosSchema = mongoose.Schema({
-    photo : {
+    path : {
         type : String,
         required: true
-    }
-
+    },
+    createdAt: {
+        type: Date,
+        require: true
+    },
 });
 
-let Photo= module.exports= mongoose.model("photoModel", photosSchema);
+module.exports= mongoose.model("photoModel", photosSchema);
 //just the image is needed.

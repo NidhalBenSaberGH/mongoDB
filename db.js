@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/firstMongoDB');
+mongoose.connect('mongodb://localhost/nidhal');
 
 module.exports = mongoose;
