@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const photoModel = require('../models/photoModel');
+const userModel = require('../models/userModel');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -17,28 +18,43 @@ const upload = multer({storage: storage});
 
 
 router.get('/', (req, res, next) => {
-    photoModel.find((err, photos) => {
+    photoModel.find().populate('createdBy').exec((err, photos) => {
         res.send(photos);
     })
 });
 
 router.post('/', upload.single('photo'), (req, res, next) => {
-    console.log('Da file', req.file);
     let photo = new photoModel();
-    photo.path = req.file.path
-    photo.createdAt = new Date();
-
-    photo.save((err, newPhoto) => {
+    userModel.findOne({_id: req.body.userId}, (err, user) => {
         if (err)
-            return console.error('Error uploading photo', err);
-        
-        console.log('Photo uploaded successfully');
-        res.send({
-            success: true,
-            photo: newPhoto
+            return console.error('Error creating photo', err);
+
+        photo.path = req.file.path
+        photo.createdAt = new Date();
+        photo.createdBy = user._id;
+    
+        photo.save((err, newPhoto) => {
+            if (err)
+                return console.error('Error uploading photo', err);
+            
+            console.log('Photo uploaded successfully');
+            res.send({
+                success: true,
+                photo: newPhoto
+            });
         });
-    });
+    })
 });
+
+router.get('/:photoId', (req, res, next) => {
+    let photoId = req.params.photoId;
+    photoModel.findOne().populate('createdBy')
+    .exec((err, photo) => {
+        if (err)
+            return console.error('Error finding photo', photoId);
+        res.send(photo);
+    })
+})
 
 router.put('/:photoId', upload.single('photo'), (req, res, next) => {
     let photoId = req.params.photoId;
