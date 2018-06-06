@@ -20,11 +20,59 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Dosis'>
+      <link rel="stylesheet" href="css/menu.css">
+
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+
+    <!--Menu  -->
+    <div id="menu-container">
+      <div id="menu-wrapper">
+         <div id="hamburger-menu"><span></span><span></span><span></span></div>
+         <!-- hamburger-menu -->
+      </div>
+      <!-- menu-wrapper -->
+      <ul class="menu-list accordion">
+         <li id="nav1" class="toggle accordion-toggle"> 
+            <span class="icon-plus"></span>
+            <a class="menu-link" href="#">List of users</a>
+         </li>
+         <!-- accordion-toggle -->
+         <ul class="menu-submenu accordion-content">
+            <li><a class="head" href="%PUBLIC_URL%/users">Show users</a></li>
+         </ul>
+         <!-- menu-submenu accordon-content-->
+         <li id="nav2" class="toggle accordion-toggle"> 
+            <span class="icon-plus"></span>
+            <a class="menu-link" href="#">List of photos</a>
+         </li>
+         <!-- accordion-toggle -->
+         <ul class="menu-submenu accordion-content">
+            <li><a class="head" href="%PUBLIC_URL%/photos">Show photos</a></li>
+         </ul>
+       <!-- menu-submenu accordon-content-->
+         <li id="nav2" class="toggle accordion-toggle"> 
+            <span class="icon-plus"></span>
+            <a class="menu-link" href="#">List of photos by user</a>
+         </li>
+         <!-- accordion-toggle -->
+         <ul class="menu-submenu accordion-content">
+            <li><a class="head" href="#">Show photos by user</a></li>
+         </ul>
+         
+      </ul>
+      <!-- menu-list accordion-->
+   </div>
+   <!-- menu-container -->
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+   
+       <script src="js/menu.js"></script>
+    <!-- EndMenu-->
+
     <div id="root"></div>
     <!--
       This HTML file is a template.

@@ -4,7 +4,8 @@ import './App.css';
 import UsersComponent from './components/UsersComponent';
 import PhotosComponent from './components/PhotosComponent';
 import UserEditComponent from './components/UserEditComponent';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 
 class App extends Component {
   render() {
@@ -22,7 +23,7 @@ class App extends Component {
           <Router>
             <div>
               <Route path="/users" component={UsersComponent} />
-              <Route path="/users/edit/:userId" component={UserEditComponent} />
+              <Route path="/editUser/:userId" component={UserEditComponent} />
               <Route path="/photos" component={PhotosComponent} />
             </div>
           </Router>

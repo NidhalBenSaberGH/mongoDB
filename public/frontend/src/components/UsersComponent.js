@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 export default class UsersComponent extends Component {
     state = {
@@ -36,6 +36,7 @@ export default class UsersComponent extends Component {
                 header: 'Actions',
                 id: 'links',
                 Cell: ({row}) => (
+                    
                     <Link 
                     state={{userId: row._original._id}}
                     to={{ pathname: `/users/edit/${row._original._id}` }}>
